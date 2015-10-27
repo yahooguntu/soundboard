@@ -25,6 +25,9 @@ end
 
 
 def play_sound path
+  # escape spaces
+  path.gsub! /\ /, '\ '
+
   puts "Playing #{path}"
   stdin, stdout, stderr = Open3.popen3("./play-sound #{path}")
 end
@@ -32,9 +35,6 @@ end
 def full_sound_path filename
   # don't allow parent directory nav
   filename.gsub! /\.\./, ''
-
-  # escape spaces
-  filename.gsub! /\ /, '\ '
 
   File.join(SOUND_DIR, filename)
 end
