@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+      a {
+        cursor: hand;
+        color: blue;
+        text-decoration: underline;
+      }
+    </style>
+    <title>Soundboard</title>
+  </head>
+  <body>
+    <ul>
+      <% @sounds.each do |sound| %>
+        <li><a onclick="playSound(this)"><%= sound %></a></li>
+      <% end %>
+    </ul>
+    <script type="application/javascript">
+      function playSound(item) {
+        $.ajax({
+          url: "./play",
+          contentType: "application/json",
+          method: "POST",
+          data: JSON.stringify({ file: item.text })
+        });
+      }
+    </script>
+  </body>
+</html>
