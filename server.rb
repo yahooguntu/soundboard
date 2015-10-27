@@ -1,11 +1,13 @@
 require 'sinatra'
 require 'json'
 require 'open3'
+require 'erubis'
 
 SOUND_DIR = './sounds'
 
 get '/' do
-  'Hello world!'
+  @sounds = sounds_list
+  erb :index
 end
 
 get '/list', provides: :json do
