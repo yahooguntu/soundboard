@@ -34,7 +34,7 @@ def full_sound_path filename
   filename.gsub! /\.\./, ''
 
   # escape spaces
-  filename.gsub! / /, '\ '
+  filename.gsub! /\ /, '\ '
 
   File.join(SOUND_DIR, filename)
 end
