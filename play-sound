@@ -2,5 +2,5 @@
 # This is the command that plays the audio files.
 # Sinatra will feed in the path to the file as the first argument.
 
-#mplayer -ao pulse::2 $1
-mplayer $1
+#mplayer -ao pulse::2 "$1"
+mplayer "$1"
