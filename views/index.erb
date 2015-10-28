@@ -11,11 +11,9 @@
     <title>Soundboard</title>
   </head>
   <body>
-    <ul>
-      <% @sounds.each do |sound| %>
-        <li><a onclick="playSound(this)"><%= sound %></a></li>
-      <% end %>
-    </ul>
+    <% @sounds.each do |sound| %>
+      <div><input type="button" onclick="playSound(this)" value="<%= sound %>" /></div>
+    <% end %>
     <script type="application/javascript">
       function playSound(item) {
         $.ajax({
