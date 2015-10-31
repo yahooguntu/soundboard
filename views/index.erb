@@ -1,6 +1,10 @@
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <style type="text/css">
       a {
         cursor: hand;
@@ -11,16 +15,23 @@
     <title>Soundboard</title>
   </head>
   <body>
-    <% @sounds.each do |sound| %>
-      <div><input type="button" onclick="playSound(this)" value="<%= sound %>" /></div>
-    <% end %>
+    <div class="container-fluid">
+      <% @sounds.each_slice(4) do |batch| %>
+        <div>
+        <% batch.each do |sound| %>
+          <button class="btn btn-danger btn-lg col-md-3" onclick="playSound(this)"><%= sound %></button>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+
     <script type="application/javascript">
       function playSound(item) {
         $.ajax({
           url: "./play",
           contentType: "application/json",
           method: "POST",
-          data: JSON.stringify({ file: item.value })
+          data: JSON.stringify({ file: item.innerText })
         });
       }
     </script>
