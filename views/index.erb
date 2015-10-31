@@ -15,11 +15,21 @@
     <title>Soundboard</title>
   </head>
   <body>
+    <div class="form-group">
+        <label>
+          Remote/Local (N/Y):
+          <input type="checkbox" name="output-selection" class="form-control output-selection">
+        </label>
+      </input>
+    </div>
     <div class="container-fluid">
       <% @sounds.each_slice(4) do |batch| %>
         <div>
         <% batch.each do |sound| %>
           <button class="btn btn-danger btn-lg col-md-3" onclick="playSound(this)"><%= sound %></button>
+          <audio id="<%= sound.downcase %>" style="visibility:hidden" controls>
+            <source src="<%= sound %>" type="audio/mpeg">
+          </audio>
         <% end %>
         </div>
       <% end %>
@@ -38,12 +48,19 @@
 
     <script type="application/javascript">
       function playSound(item) {
-        $.ajax({
-          url: "./play",
-          contentType: "application/json",
-          method: "POST",
-          data: JSON.stringify({ file: item.innerText })
-        });
+        var playLocally = Boolean($('.output-selection').prop('checked'));
+        var fileName = item.innerText.trim();
+        if(playLocally) {
+          document.getElementById(fileName.toLowerCase()).play();
+        }
+        else {
+          $.ajax({
+            url: "./play",
+            contentType: "application/json",
+            method: "POST",
+            data: JSON.stringify({ file: fileName })
+          });
+        }
       }
 
       function updateServer() {
