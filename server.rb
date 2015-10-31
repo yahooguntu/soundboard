@@ -3,6 +3,8 @@ require 'json'
 require 'open3'
 require 'erubis'
 require 'tilt/erubis'
+require 'fileutils'
+require 'tempfile'
 
 SOUND_DIR = './sounds'
 
@@ -15,11 +17,22 @@ get '/list', provides: :json do
   {sounds: sounds_list}
 end
 
+post '/upload', provides: :json do
+  begin
+    filename = params['file'][:filename]
+    FileUtils.mv(params['file'][:tempfile].path, "./sounds/#{filename}")
+    ObjectSpace.undefine_finalizer(params['file'][:tempfile])
+    {status: :ok, filename: filename}
+  rescue
+    {status: :not_ok}
+  end
+end
+
 post '/update', provides: :json do
   msg = ''
   Open3.popen3("git pull") do |stdin, stdout, stderr|
-    msg = stdout.gets
-    msg += stderr.gets
+    msg = stdout.read
+    msg += stderr.read
   end
   {status: :ok, output: msg}
 end
@@ -41,7 +54,7 @@ def play_sound path
   path.gsub!(/\ /, '\ ')
 
   puts "Playing #{path}"
-  stdin, stdout, stderr = Open3.popen3("./play-sound #{path}")
+  Open3.popen3("./play-sound #{path}")
 end
 
 def full_sound_path filename

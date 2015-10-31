@@ -24,15 +24,17 @@
         </div>
       <% end %>
     </div>
-    <form action="file/upload" method="post">
+    <form action="upload" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label>
           File for Upload
-          <input type="file" class="form-control"></input>
+          <input type="file" name="file" class="form-control"></input>
         </label>
       </div>
       <button type="submit" class="btn btn-default">Upload</button>
     </form>
+
+    <button class="btn btn-lg col-md-3" onclick="updateServer()">Update Server</button>
 
     <script type="application/javascript">
       function playSound(item) {
@@ -41,6 +43,15 @@
           contentType: "application/json",
           method: "POST",
           data: JSON.stringify({ file: item.innerText })
+        });
+      }
+
+      function updateServer() {
+        $.ajax({
+          url: "./update",
+          contentType: "application/json",
+          method: "POST",
+          data: JSON.stringify({ update: true })
         });
       }
     </script>
