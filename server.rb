@@ -8,7 +8,7 @@ require 'tempfile'
 
 SOUND_DIR = './sounds'
 
-# get '/' do
+get '/' do
   @sounds = sounds_list
   erb :index
 end
