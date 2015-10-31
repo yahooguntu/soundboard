@@ -7,6 +7,7 @@ require 'fileutils'
 require 'tempfile'
 
 SOUND_DIR = './sounds'
+set :public_folder, Proc.new { File.join(root, 'sounds/') }
 
 get '/' do
   @sounds = sounds_list
