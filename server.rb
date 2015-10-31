@@ -2,6 +2,7 @@ require 'sinatra'
 require 'json'
 require 'open3'
 require 'erubis'
+require 'tilt/erubis'
 
 SOUND_DIR = './sounds'
 
