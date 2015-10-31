@@ -1,6 +1,6 @@
-Development set up:
-`bundle install`
+Development set up:  
+`bundle install`  
 `brew install mplayer` (if using MacOSX)
 
-Run app:
+Run app:  
 `ruby server.rb -e production`
