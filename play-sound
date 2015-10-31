@@ -2,5 +2,6 @@
 # This is the command that plays the audio files.
 # Sinatra will feed in the path to the file as the first argument.
 
-#mplayer -ao pulse::2 "$1"
+#mplayer -demuxer lavf -ac mpg123 -ao alsa:device=hw=0.0 "$1"
+#mplayer -demuxer lavf -ac mpg123 -ao pulse::2 "$1"
 mplayer "$1"
