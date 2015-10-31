@@ -15,6 +15,15 @@ get '/list', provides: :json do
   {sounds: sounds_list}
 end
 
+post '/update', provides: :json do
+  msg = ''
+  Open3.popen3("git pull") do |stdin, stdout, stderr|
+    msg = stdout.gets
+    msg += stderr.gets
+  end
+  {status: :ok, output: msg}
+end
+
 post '/play', provides: :json do
   json_params = JSON.parse request.body.read
   full_path = full_sound_path json_params['file']
@@ -29,7 +38,7 @@ end
 
 def play_sound path
   # escape spaces
-  path.gsub! /\ /, '\ '
+  path.gsub!(/\ /, '\ ')
 
   puts "Playing #{path}"
   stdin, stdout, stderr = Open3.popen3("./play-sound #{path}")
@@ -37,7 +46,7 @@ end
 
 def full_sound_path filename
   # don't allow parent directory nav
-  filename.gsub! /\.\./, ''
+  filename.gsub!(/\.\./, '')
 
   File.join(SOUND_DIR, filename)
 end
