@@ -2,16 +2,10 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <style type="text/css">
-      a {
-        cursor: hand;
-        color: blue;
-        text-decoration: underline;
-      }
-    </style>
+    <script src="./dist/app.js"></script>
+    <script src="./dist/vendor.js"></script>
+    <link rel="stylesheet" href="./dist/vendor.css">
+    <link rel="stylesheet" href="./dist/app.css">
     <title>Soundboard</title>
   </head>
   <body>
@@ -26,9 +20,9 @@
       <% @sounds.each_slice(4) do |batch| %>
         <div>
         <% batch.each do |sound| %>
-          <button class="btn btn-danger btn-lg col-md-3" onclick="playSound(this)"><%= sound %></button>
-          <audio id="<%= sound.downcase %>" style="display: none" controls>
-            <source src="<%= sound %>" type="audio/mpeg">
+          <button class="btn btn-danger btn-lg col-md-3 play-btn"><%= sound %></button>
+          <audio id="<%= sound.downcase %>" controls>
+            <source src="sounds/<%= sound %>" type="audio/mpeg">
           </audio>
         <% end %>
         </div>
@@ -43,34 +37,6 @@
       </div>
       <button type="submit" class="btn btn-default">Upload</button>
     </form>
-
-    <button class="btn btn-lg col-md-3" onclick="updateServer()">Update Server</button>
-
-    <script type="application/javascript">
-      function playSound(item) {
-        var playLocally = Boolean($('.output-selection').prop('checked'));
-        var fileName = item.innerText.trim();
-        if(playLocally) {
-          document.getElementById(fileName.toLowerCase()).play();
-        }
-        else {
-          $.ajax({
-            url: "./play",
-            contentType: "application/json",
-            method: "POST",
-            data: JSON.stringify({ file: fileName })
-          });
-        }
-      }
-
-      function updateServer() {
-        $.ajax({
-          url: "./update",
-          contentType: "application/json",
-          method: "POST",
-          data: JSON.stringify({ update: true })
-        });
-      }
-    </script>
+    <button class="btn btn-lg col-md-3">Update Server</button>
   </body>
 </html>
