@@ -15,3 +15,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore vendored javascript modules
+/node_modules
+
+# Ignore generated assets and local sound files
+/static/dist/**
+/static/sounds/**
+!/static/sounds/.gitkeep
