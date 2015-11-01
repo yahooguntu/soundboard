@@ -1,6 +1,6 @@
 require_relative 'server'
 
 task :serve do
-  system('webpack')
+  system(File.join('node_modules', '.bin', 'webpack'))
   App.run!
 end
