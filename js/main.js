@@ -41,8 +41,11 @@ export default (function() {
       }).then((res) => {
         if(res.statusCode < 300) {
           alertify.success('File uploaded!');
-          document.querySelector('.upload-form input[type="file"]').value = null;
         }
+        else {
+          alertify.error('Something bad happened!');
+        }
+        document.querySelector('.upload-form input[type="file"]').value = null;
       });
       e.preventDefault();
     })
