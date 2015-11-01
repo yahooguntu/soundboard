@@ -27,7 +27,7 @@
         <div>
         <% batch.each do |sound| %>
           <button class="btn btn-danger btn-lg col-md-3" onclick="playSound(this)"><%= sound %></button>
-          <audio id="<%= sound.downcase %>" style="visibility:hidden" controls>
+          <audio id="<%= sound.downcase %>" style="display: none" controls>
             <source src="<%= sound %>" type="audio/mpeg">
           </audio>
         <% end %>
