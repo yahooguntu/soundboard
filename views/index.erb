@@ -14,9 +14,6 @@
         <div>
         <% batch.each do |sound| %>
           <button class="btn btn-danger btn-lg col-md-3 play-btn"><%= sound %></button>
-          <audio id="<%= sound.downcase %>" controls>
-            <source src="sounds/<%= sound %>" type="audio/mpeg">
-          </audio>
         <% end %>
         </div>
       <% end %>
@@ -42,6 +39,9 @@
         <button type="submit" class="btn btn-default">Upload</button>
       </form>
       <button class="btn btn-lg col-md-3 update-btn">Update Server</button>
+      <audio id="sound-player" controls>
+        <source type="audio/mpeg">
+      </audio>
     </div>
   </body>
 </html>

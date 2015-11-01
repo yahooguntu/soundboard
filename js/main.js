@@ -7,7 +7,9 @@ export default (function() {
     let shouldPlayLocally = val === 'local';
     let fileName = item.innerText.trim();
     if(shouldPlayLocally) {
-      document.getElementById(fileName.toLowerCase()).play();
+      let player = document.getElementById('sound-player');
+      player.setAttribute('src', `sounds/${fileName}`);
+      player.play();
     }
     else {
       request('POST', './play', {
