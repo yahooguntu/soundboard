@@ -26,13 +26,13 @@ class App < Sinatra::Application
     begin
       filename = params['file'][:filename]
       if filename.downcase.end_with? ".mp3"
-        FileUtils.mv(params['file'][:tempfile].path, "./sounds/#{filename}")
+        FileUtils.mv(params['file'][:tempfile].path, "#{SOUND_DIR}/#{filename}")
         ObjectSpace.undefine_finalizer(params['file'][:tempfile])
         {status: :ok, filename: filename}
       elsif filename.downcase.end_with? ".wav"
         temp_path = params['file'][:tempfile].path.gsub(/\ /, '\ ')
         new_filename = filename.gsub(/\ /, '\ ').gsub(/.wav$/i, ".mp3")
-        Open3.popen3("ffmpeg -i #{temp_path} -vn -ar 44100 -ac 2 -ab 192k -f mp3 ./sounds/#{new_filename}")
+        Open3.popen3("ffmpeg -i #{temp_path} -vn -ar 44100 -ac 2 -ab 192k -f mp3 #{SOUND_DIR}/#{new_filename}")
         {status: :ok, filename: new_filename}
       else
         {status: :failure, error: "Unsupported file type."}
