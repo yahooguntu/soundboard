@@ -3,7 +3,7 @@ import '../styles/app.css';
 
 export default (function() {
   function playSound(item) {
-    let val = document.querySelector('.output-selection').value;
+    let val = document.querySelector('[name="output-selection"]:checked').value;
     let shouldPlayLocally = val === 'local';
     let fileName = item.innerText.trim();
     if(shouldPlayLocally) {
