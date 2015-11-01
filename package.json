@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.5",
+    "core-js": "^1.2.4",
     "then-request": "^2.1.1"
   }
 }
