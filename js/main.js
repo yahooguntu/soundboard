@@ -1,4 +1,5 @@
 import request from 'then-request';
+import alertify from 'alertifyjs';
 import '../styles/app.css';
 
 export default (function() {
@@ -34,6 +35,17 @@ export default (function() {
     document.querySelector('.update-btn').addEventListener('click', function() {
       updateServer(this);
     });
+    document.querySelector('.upload-form').addEventListener('submit', function(e) {
+      request('POST', 'upload', {
+        body: new FormData(this)
+      }).then((res) => {
+        if(res.statusCode < 300) {
+          alertify.success('File uploaded!');
+          document.querySelector('.upload-form input[type="file"]').value = null;
+        }
+      });
+      e.preventDefault();
+    })
   }
 
   window.onload = setup;

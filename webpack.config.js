@@ -9,7 +9,9 @@ module.exports = {
       'then-request',
       'bootstrap/dist/css/bootstrap.css',
       'core-js/fn/array/from',
-      'core-js/fn/object/assign'
+      'core-js/fn/object/assign',
+      'alertifyjs/build/alertify',
+      'alertifyjs/build/css/alertify.css'
     ]
   },
   output: {
