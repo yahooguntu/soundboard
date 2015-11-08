@@ -10,6 +10,7 @@ module.exports = {
       'bootstrap/dist/css/bootstrap.css',
       'core-js/fn/array/from',
       'core-js/fn/object/assign',
+      'bonzo/bonzo',
       'alertifyjs/build/alertify',
       'alertifyjs/build/css/alertify.css'
     ]
