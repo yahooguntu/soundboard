@@ -25,9 +25,13 @@
       </form>
     </header>
     <div class="conatiner-fluid top-container">
-      <% @sounds.each do |sound| %>
-        <button class="btn btn-danger btn-lg col-xs-6 col-md-3 play-btn"><%= sound %></button>
-      <% end %>
+        <% @sounds.each_slice(4) do |batch| %>
+          <div class="row">
+            <% batch.each do |sound| %>
+              <button class="btn btn-danger btn-lg col-xs-6 col-md-3 play-btn"><%= sound %></button>
+            <% end %>
+          </div>
+        <% end %>
     </div>
     <div class="conatiner-fluid settings-container">
       <form class="upload-form settings-section col-md-12" method="post" enctype="multipart/form-data">
