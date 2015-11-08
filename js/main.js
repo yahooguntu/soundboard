@@ -22,7 +22,7 @@ export default (function() {
   function updateServer() {
     request('POST', './update', {
       json: {update: true}
-    })
+    });
   }
 
   function setup() {
@@ -35,7 +35,8 @@ export default (function() {
     document.querySelector('.update-btn').addEventListener('click', function() {
       updateServer(this);
     });
-    document.querySelector('.upload-form').addEventListener('submit', function(e) {
+    document.querySelector('.upload-form').addEventListener('submit',
+        function(e) {
       request('POST', 'upload', {
         body: new FormData(this)
       }).then((res) => {
@@ -48,7 +49,7 @@ export default (function() {
         document.querySelector('.upload-form input[type="file"]').value = null;
       });
       e.preventDefault();
-    })
+    });
   }
 
   window.onload = setup;
