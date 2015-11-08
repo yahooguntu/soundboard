@@ -1,21 +1,17 @@
-#sound-player {
-  display: none;
+button {
+  font-size: 12px;
 }
 
 body {
   margin-top: 14px;
 }
 
+#sound-player {
+  display: none;
+}
+
 .upload-form {
   margin-bottom: 14px;
-}
-
-.settings-container {
-  border: 1px solid black;
-}
-
-.settings-section~.settings-section {
-  border-top: 1px solid black;
 }
 
 .settings-section {
@@ -23,5 +19,28 @@ body {
 }
 
 .update-server-form {
+  text-align: center;
+}
+
+.settings-header {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  text-align: center;
+  z-index: 2;
+}
+
+.top-container {
+  margin-top: 30px;
+  padding: 4px;
+}
+
+.output-selection-form {
+  padding: 4px;
+}
+
+.settings-container {
+  padding: 4px;
   text-align: center;
 }

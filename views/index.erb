@@ -11,23 +11,26 @@
     <title>Soundboard</title>
   </head>
   <body>
-    <div class="col-md-3 settings-container">
-      <form class="output-selection-form settings-section">
-        <h2>Output Location</h2>
-        <div class="radio">
-          <label>
-            <input type="radio" name="output-selection" value="remote" class="output-selection" checked="checked" />
-            Remote
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="output-selection" value="local" class="output-selection" />
-            Local
-          </label>
-        </div>
+    <header class="settings-header bg-primary">
+      <form class="output-selection-form bg-primary">
+        <span>Output Location:</span>
+        <label class="checkbox-inline">
+          <input type="radio" name="output-selection" value="remote" class="output-selection" checked="checked" />
+          Remote
+        </label>
+        <label class="checkbox-inline">
+          <input type="radio" name="output-selection" value="local" class="output-selection" />
+          Local
+        </label>
       </form>
-      <form class="upload-form settings-section" method="post" enctype="multipart/form-data">
+    </header>
+    <div class="conatiner-fluid top-container">
+      <% @sounds.each do |sound| %>
+        <button class="btn btn-danger btn-lg col-xs-6 col-md-3 play-btn"><%= sound %></button>
+      <% end %>
+    </div>
+    <div class="conatiner-fluid settings-container">
+      <form class="upload-form settings-section col-md-12" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label>
             File for Upload
@@ -36,21 +39,12 @@
         </div>
         <button type="submit" class="btn btn-default upload-btn">Upload</button>
       </form>
-      <div class="settings-section update-server-form">
+      <div class="settings-section update-server-form col-md-12">
         <button class="btn btn-lg update-btn">Update Server</button>
       </div>
       <audio id="sound-player" controls>
         <source type="audio/mpeg">
       </audio>
-    </div>
-    <div class="col-md-9">
-      <% @sounds.each_slice(4) do |batch| %>
-        <div>
-        <% batch.each do |sound| %>
-          <button class="btn btn-danger btn-lg col-md-3 play-btn"><%= sound %></button>
-        <% end %>
-        </div>
-      <% end %>
     </div>
   </body>
 </html>
