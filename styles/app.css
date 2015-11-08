@@ -9,3 +9,19 @@ body {
 .upload-form {
   margin-bottom: 14px;
 }
+
+.settings-container {
+  border: 1px solid black;
+}
+
+.settings-section~.settings-section {
+  border-top: 1px solid black;
+}
+
+.settings-section {
+  padding: 14px 0px;
+}
+
+.update-server-form {
+  text-align: center;
+}
