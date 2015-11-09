@@ -6,18 +6,18 @@ module.exports = {
   entry: {
     app: './js/main',
     vendor: [
-      'then-request',
-      'bootstrap/dist/css/bootstrap.css',
       'core-js/fn/array/from',
       'core-js/fn/object/assign',
-      'bonzo/bonzo',
-      'alertifyjs/build/alertify',
+      'then-request',
+      'bonzo',
+      'alertifyjs',
+      'bootstrap/dist/css/bootstrap.css',
       'alertifyjs/build/css/alertify.css'
     ]
   },
   output: {
     path: path.join(__dirname, 'static', 'dist'),
-    filename: './[name].js',
+    filename: '[name].js',
   },
   resolve: {
     root: __dirname,
