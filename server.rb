@@ -62,6 +62,10 @@ class App < Sinatra::Application
     {status: :ok}
   end
 
+  get '/silence', provides: :json do
+    Open3.popen3("pkill mplayer")
+    {status: :ok}
+  end
 
   def play_sound path
     # escape spaces
